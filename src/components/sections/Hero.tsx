@@ -46,7 +46,7 @@ export default function Hero() {
           </div>
         </Reveal>
         
-        <div className="flex flex-col gap-6 max-w-2xl">
+        <div className="flex flex-col gap-6 max-w-3xl">
           <SplitText
             text="Hi, I'm Vishwas."
             className="text-4xl tracking-tight md:text-5xl lg:text-6xl font-semibold text-foreground"
@@ -61,13 +61,22 @@ export default function Hero() {
             textAlign="left"
           />
           
-          <BlurText
-            text="I build smart, scalable web applications by combining modern AI tools with solid full-stack engineering. I love taking complex problems and turning them into simple, elegant digital experiences."
-            className="text-muted-foreground text-lg sm:text-xl leading-relaxed"
-            delay={30}
-            animateBy="words"
-            direction="top"
-          />
+          <div className="flex flex-col gap-4">
+            <BlurText
+              text="AI-powered applications, production-grade backend systems, intelligent chatbots, and scalable architectures all held together with clean code (and occasionally caffeine)."
+              className="text-muted-foreground text-lg sm:text-xl leading-relaxed"
+              delay={20}
+              animateBy="words"
+              direction="top"
+            />
+            <BlurText
+              text="There's more to the story than a few buzzwords. Scroll down and let's dive in."
+              className="text-muted-foreground text-lg sm:text-xl leading-relaxed"
+              delay={20}
+              animateBy="words"
+              direction="top"
+            />
+          </div>
         </div>
         
         <Reveal delay={0.4}>
