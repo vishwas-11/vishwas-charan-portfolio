@@ -40,7 +40,7 @@ export default async function GithubGrid() {
   }
 
   return (
-    <section className="w-full max-w-4xl mx-auto px-4 py-24 md:px-8 flex justify-center">
+    <section className="w-full max-w-4xl mx-auto px-4 py-12 md:px-8 flex justify-center">
       <GithubGridClient cells={cells} />
     </section>
   );

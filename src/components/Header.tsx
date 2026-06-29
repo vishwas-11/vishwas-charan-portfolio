@@ -2,24 +2,17 @@
 
 import Link from 'next/link';
 import { Home, LayoutGrid, User, PenLine } from 'lucide-react';
-import { useEffect, useState } from "react";
 import { AnimatedThemeToggle } from '@/components/ui/animated-theme-toggle';
 import { Dock, DockIcon } from '@/components/ui/dock';
 
-export default function Header({ githubContributions = "11.2k" }: { githubContributions?: string }) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
+export default function Header() {
   // Shared tooltip classes for upward popping
   const tooltipClasses = "pointer-events-none absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-max opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-y-[-4px] z-50 bg-foreground text-background text-xs px-3 py-2 rounded-md shadow-xl font-medium";
   const tooltipArrow = "absolute top-full left-1/2 -translate-x-1/2 border-[5px] border-transparent border-t-foreground";
 
   return (
     <header className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[70]">
-      <Dock className="bg-white/90 dark:bg-[#1a1a1a]/90 backdrop-blur-md border border-neutral-200 dark:border-white/10 shadow-2xl px-2">
+      <Dock style={{ backgroundColor: 'var(--dock-bg)', borderColor: 'var(--dock-border)' }} className="backdrop-blur-xl border shadow-xl px-4 h-16">
         <DockIcon>
           <div className="group relative h-full w-full">
             <Link href="/" className="flex h-full w-full items-center justify-center rounded-full text-foreground transition-colors">
@@ -68,7 +61,7 @@ export default function Header({ githubContributions = "11.2k" }: { githubContri
           </div>
         </DockIcon>
 
-        <div className="w-[1px] h-6 bg-border/50 mx-1" />
+        <div className="w-[1px] h-6 mx-1" style={{ backgroundColor: 'var(--dock-sep)' }} />
 
         <DockIcon>
           <div className="group relative h-full w-full">
@@ -106,7 +99,7 @@ export default function Header({ githubContributions = "11.2k" }: { githubContri
           </div>
         </DockIcon>
 
-        <div className="w-[1px] h-6 bg-border/50 mx-1" />
+        <div className="w-[1px] h-6 mx-1" style={{ backgroundColor: 'var(--dock-sep)' }} />
 
         <DockIcon>
           <div className="group relative h-full w-full flex items-center justify-center">

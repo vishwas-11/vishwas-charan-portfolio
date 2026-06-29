@@ -1,5 +1,7 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 :root, .light {
   --background: #fafafa;
   --foreground: #09090b;
@@ -9,6 +11,9 @@
   --border: #e4e4e7;
   --accent: #f4f4f5;
   --accent-foreground: #09090b;
+  --dock-bg: rgba(255, 255, 255, 0.9);
+  --dock-border: #e5e5e5;
+  --dock-sep: #e5e5e5;
 }
 
 .dark {
@@ -20,6 +25,9 @@
   --border: #222222;
   --accent: #111111;
   --accent-foreground: #ffffff;
+  --dock-bg: rgba(26, 26, 26, 0.9);
+  --dock-border: #333333;
+  --dock-sep: #333333;
 }
 
 @theme {

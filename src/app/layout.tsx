@@ -26,8 +26,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const stats = await getGithubStats("vishwas-11");
-
   return (
     <html lang="en" suppressHydrationWarning>
       <body
@@ -38,7 +36,7 @@ export default async function RootLayout({
           defaultTheme="dark"
           enableSystem
         >
-          <Header githubContributions={stats} />
+          <Header />
           <main className="flex-1">
             {children}
           </main>
