@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import { CinematicFooter } from "@/components/ui/motion-footer";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { getGithubStats } from "@/lib/github";
 
@@ -37,11 +37,11 @@ export default async function RootLayout({
           enableSystem
         >
           <Header />
-          <main className="flex-1">
+          <main className="flex-1 bg-background relative z-10 shadow-[0_20px_50px_rgba(0,0,0,0.5)]">
             {children}
           </main>
-          <Footer />
-          <div className="pointer-events-none fixed bottom-0 left-0 w-full h-32 bg-background/80 backdrop-blur-md [mask-image:linear-gradient(to_top,black_20%,transparent)] z-50" />
+          <CinematicFooter />
+          <div className="pointer-events-none fixed bottom-0 left-0 w-full h-48 bg-background/80 backdrop-blur-md [mask-image:linear-gradient(to_top,black_10%,transparent)] z-50" />
         </ThemeProvider>
       </body>
     </html>

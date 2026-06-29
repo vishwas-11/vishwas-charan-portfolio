@@ -3,7 +3,6 @@ import Resume from "@/components/sections/Resume";
 import SelectedWork from "@/components/sections/SelectedWork";
 import MyStack from "@/components/sections/MyStack";
 import GithubGrid from "@/components/GithubGrid";
-import Contact from "@/components/sections/Contact";
 
 export default function Home() {
   return (
@@ -13,7 +12,6 @@ export default function Home() {
       <SelectedWork />
       <MyStack />
       <GithubGrid />
-      <Contact />
     </div>
   );
 }
