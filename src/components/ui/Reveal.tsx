@@ -9,9 +9,10 @@ interface RevealProps {
   delay?: number;
   direction?: "up" | "down" | "left" | "right";
   overflow?: "hidden" | "visible";
+  className?: string;
 }
 
-export const Reveal = ({ children, width = "100%", delay = 0, direction = "up", overflow = "hidden" }: RevealProps) => {
+export const Reveal = ({ children, width = "100%", delay = 0, direction = "up", overflow = "hidden", className = "" }: RevealProps) => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
@@ -31,7 +32,7 @@ export const Reveal = ({ children, width = "100%", delay = 0, direction = "up", 
   };
 
   return (
-    <div ref={ref} style={{ width, overflow }}>
+    <div ref={ref} style={{ width, overflow }} className={className}>
       <motion.div
         variants={getVariants()}
         initial="hidden"

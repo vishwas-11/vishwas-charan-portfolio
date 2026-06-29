@@ -1,5 +1,7 @@
 import Image from "next/image";
 import { Reveal } from "@/components/ui/Reveal";
+import SplitText from "@/components/ui/SplitText";
+import BlurText from "@/components/ui/BlurText";
 import { ArrowRight, Mail } from "lucide-react";
 
 export default function Hero() {
@@ -30,17 +32,26 @@ export default function Hero() {
         </Reveal>
         
         <div className="flex flex-col gap-6 max-w-2xl">
-          <Reveal delay={0.2}>
-            <h1 className="text-4xl tracking-tight md:text-5xl lg:text-6xl font-semibold text-foreground">
-              Hi, I'm Vishwas.
-            </h1>
-          </Reveal>
+          <SplitText
+            text="Hi, I'm Vishwas."
+            className="text-4xl tracking-tight md:text-5xl lg:text-6xl font-semibold text-foreground"
+            delay={50}
+            duration={0.8}
+            ease="power3.out"
+            splitType="chars"
+            from={{ opacity: 0, y: 30, rotationX: -90 }}
+            to={{ opacity: 1, y: 0, rotationX: 0 }}
+            threshold={0.1}
+            tag="h1"
+          />
           
-          <Reveal delay={0.3}>
-            <p className="text-muted-foreground text-lg sm:text-xl leading-relaxed">
-              I build smart, scalable web applications by combining modern AI tools with solid full-stack engineering. I love taking complex problems and turning them into simple, elegant digital experiences.
-            </p>
-          </Reveal>
+          <BlurText
+            text="I build smart, scalable web applications by combining modern AI tools with solid full-stack engineering. I love taking complex problems and turning them into simple, elegant digital experiences."
+            className="text-muted-foreground text-lg sm:text-xl leading-relaxed"
+            delay={30}
+            animateBy="words"
+            direction="top"
+          />
         </div>
         
         <Reveal delay={0.4}>

@@ -19,7 +19,7 @@ export default function Header({ githubContributions = "11.2k" }: { githubContri
 
   return (
     <header className="fixed bottom-6 left-1/2 -translate-x-1/2 z-[70]">
-      <Dock className="bg-background/90 backdrop-blur-md border border-border/50 shadow-2xl px-2">
+      <Dock className="bg-white/90 dark:bg-[#1a1a1a]/90 backdrop-blur-md border border-neutral-200 dark:border-white/10 shadow-2xl px-2">
         <DockIcon>
           <div className="group relative h-full w-full">
             <Link href="/" className="flex h-full w-full items-center justify-center rounded-full text-foreground transition-colors">
