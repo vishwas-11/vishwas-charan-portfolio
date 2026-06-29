@@ -109,13 +109,13 @@ export function CinematicFooter() {
   return (
     <div
       ref={wrapperRef}
-      className="relative h-[80vh] w-full"
+      className="relative h-[65vh] min-h-[500px] w-full"
       style={{ clipPath: "polygon(0% 0, 100% 0%, 100% 100%, 0 100%)" }}
     >
       {/* The actual footer stays fixed to the viewport underneath everything */}
-      <footer className="fixed bottom-0 left-0 flex h-[80vh] w-full flex-col items-center justify-center bg-background text-foreground border-t border-border">
+      <footer className="fixed bottom-0 left-0 flex h-[65vh] min-h-[500px] w-full flex-col items-center justify-center bg-background/95 backdrop-blur-md supports-[backdrop-filter]:bg-background/60 text-foreground border-t border-border/50 shadow-inner">
         
-        <div className="flex flex-col items-center justify-center space-y-12 px-4 md:px-8 w-full max-w-5xl mx-auto z-10 mb-8">
+        <div className="flex flex-col items-center justify-center space-y-10 px-4 md:px-8 w-full max-w-5xl mx-auto z-10 pb-28 md:pb-32 pt-12">
           
           <div className="flex flex-col items-center text-center space-y-6">
             <div className="inline-flex items-center gap-4">
@@ -133,7 +133,7 @@ export function CinematicFooter() {
                   />
                 </div>
               </div>
-              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">
+              <span className="text-xs font-medium tracking-wider text-muted-foreground uppercase">
                 Available for work
               </span>
             </div>
@@ -142,7 +142,7 @@ export function CinematicFooter() {
               <SplitText
                 tag="h2"
                 text="Let's Connect."
-                className="text-5xl md:text-7xl lg:text-[7rem] leading-none font-black tracking-tighter text-foreground uppercase whitespace-nowrap"
+                className="text-4xl md:text-5xl lg:text-6xl leading-tight font-semibold tracking-tight text-foreground"
                 delay={50}
                 duration={1.2}
                 ease="power3.out"
@@ -155,7 +155,7 @@ export function CinematicFooter() {
               />
             </div>
             
-            <p className="text-muted-foreground text-lg md:text-xl max-w-xl mx-auto font-medium">
+            <p className="text-muted-foreground text-sm md:text-base max-w-md mx-auto">
               Want to roast my code or talk about music? Drop me a line. I promise I write better guitar riffs than I do Backend APIs.
             </p>
           </div>
@@ -165,12 +165,12 @@ export function CinematicFooter() {
               <motion.button 
                 whileTap={{ scale: 0.95 }}
                 onClick={handleCopyEmail}
-                className="group relative flex h-16 w-full sm:w-auto items-center justify-between gap-8 rounded-full bg-foreground px-8 text-background transition-colors hover:bg-foreground/90 overflow-hidden"
+                className="group relative flex h-11 w-full sm:w-auto items-center justify-center gap-3 rounded-full bg-foreground px-6 text-background transition-colors hover:bg-foreground/90 overflow-hidden shadow-sm"
               >
-                <span className="text-base font-semibold tracking-wide">
+                <span className="text-sm font-medium">
                   {copied ? "Copied to clipboard" : "Copy Email"}
                 </span>
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-background/20 transition-transform group-hover:scale-110">
+                <span className="flex items-center justify-center transition-transform group-hover:scale-110">
                   {copied ? <Check className="h-4 w-4 text-background" /> : <Copy className="h-4 w-4 text-background" />}
                 </span>
               </motion.button>
@@ -182,12 +182,12 @@ export function CinematicFooter() {
                 href="https://x.com/charan_722" 
                 target="_blank" 
                 rel="noopener noreferrer"
-                className="group relative flex h-16 w-full sm:w-auto items-center justify-between gap-8 rounded-full border-2 border-border bg-background px-8 text-foreground transition-colors hover:border-foreground overflow-hidden"
+                className="group relative flex h-11 w-full sm:w-auto items-center justify-center gap-3 rounded-full border border-border bg-background/50 backdrop-blur-sm px-6 text-foreground transition-colors hover:bg-accent hover:text-accent-foreground overflow-hidden shadow-sm"
               >
-                <span className="text-base font-semibold tracking-wide">
+                <span className="text-sm font-medium">
                   Slide into DMs
                 </span>
-                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-foreground/5 transition-transform group-hover:scale-110 group-hover:-translate-y-1 group-hover:translate-x-1">
+                <span className="flex items-center justify-center transition-transform group-hover:scale-110 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
                   <ArrowUpRight className="h-4 w-4" />
                 </span>
               </motion.a>
