@@ -10,6 +10,7 @@ export default function Hero() {
             src="/images/home/avatar.jpg"
             alt="Vishwas's avatar"
             fill
+            sizes="(max-width: 768px) 100vw, 96px"
             className="object-cover object-[50%_10%] scale-[1.15] transition-transform duration-500 hover:scale-[1.25]"
             priority
           />
