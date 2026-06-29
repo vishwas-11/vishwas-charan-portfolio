@@ -6,6 +6,7 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, useSpring } from "framer-motion";
 import { Check, ArrowUpRight, Copy, ArrowUp } from "lucide-react";
+import SplitText from "./SplitText";
 
 // Register ScrollTrigger safely for React
 if (typeof window !== "undefined") {
@@ -51,6 +52,7 @@ export function CinematicFooter() {
   const giantTextRef = useRef<HTMLHeadingElement>(null);
   const linksRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = useState(false);
+  const [triggerEl, setTriggerEl] = useState<HTMLDivElement | null>(null);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText("vishwascharan11@gmail.com");
@@ -61,6 +63,7 @@ export function CinematicFooter() {
   useEffect(() => {
     if (typeof window === "undefined") return;
     if (!wrapperRef.current) return;
+    setTriggerEl(wrapperRef.current);
 
     // React strict mode compatible GSAP context cleanup
     const ctx = gsap.context(() => {
@@ -115,20 +118,42 @@ export function CinematicFooter() {
         <div className="flex flex-col items-center justify-center space-y-12 px-4 md:px-8 w-full max-w-5xl mx-auto z-10 mb-8">
           
           <div className="flex flex-col items-center text-center space-y-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 text-sm font-medium text-foreground uppercase tracking-widest">
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+            <div className="inline-flex items-center gap-4">
+              <div className="relative flex h-4 w-6 flex-col overflow-hidden rounded-sm border border-foreground/30 bg-background">
+                <div className="flex h-1.5 w-full items-center gap-[1.5px] border-b border-foreground/20 bg-foreground/10 px-[2px]">
+                  <div className="h-[2px] w-[2px] rounded-full bg-red-500/70" />
+                  <div className="h-[2px] w-[2px] rounded-full bg-yellow-500/70" />
+                  <div className="h-[2px] w-[2px] rounded-full bg-green-500/70" />
+                </div>
+                <div className="flex flex-1 items-center px-[2px]">
+                  <motion.div
+                    animate={{ width: ["0%", "80%", "80%", "0%", "0%"] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", times: [0, 0.4, 0.6, 0.9, 1] }}
+                    className="h-[2px] bg-foreground"
+                  />
+                </div>
+              </div>
+              <span className="font-mono text-[11px] font-bold uppercase tracking-[0.3em] text-muted-foreground">
+                Available for work
               </span>
-              Available for work
             </div>
             
-            <h2 
-              ref={giantTextRef}
-              className="text-6xl md:text-8xl lg:text-[9rem] leading-none font-black tracking-tighter text-foreground uppercase"
-            >
-              Let's Talk.
-            </h2>
+            <div ref={giantTextRef}>
+              <SplitText
+                tag="h2"
+                text="Let's Connect."
+                className="text-5xl md:text-7xl lg:text-[7rem] leading-none font-black tracking-tighter text-foreground uppercase whitespace-nowrap"
+                delay={50}
+                duration={1.2}
+                ease="power3.out"
+                splitType="chars"
+                from={{ opacity: 0, y: 150, rotationX: 90 }}
+                to={{ opacity: 1, y: 0, rotationX: 0 }}
+                threshold={0.1}
+                customTrigger={triggerEl}
+                onScrollReplay={true}
+              />
+            </div>
             
             <p className="text-muted-foreground text-lg md:text-xl max-w-xl mx-auto font-medium">
               Want to roast my code or talk about music? Drop me a line. I promise I write better guitar riffs than I do Backend APIs.

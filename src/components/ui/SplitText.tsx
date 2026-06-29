@@ -8,22 +8,6 @@ import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger, GSAPSplitText, useGSAP);
 
-export interface SplitTextProps {
-  text?: string;
-  className?: string;
-  delay?: number;
-  duration?: number;
-  ease?: string;
-  splitType?: string;
-  from?: Record<string, any>;
-  to?: Record<string, any>;
-  threshold?: number;
-  rootMargin?: string;
-  textAlign?: string;
-  tag?: string;
-  onLetterAnimationComplete?: () => void;
-}
-
 const SplitText = ({
   text = '',
   className = '',
@@ -35,10 +19,28 @@ const SplitText = ({
   to = { opacity: 1, y: 0 },
   threshold = 0.1,
   rootMargin = '-100px',
-  textAlign = 'left',
+  textAlign = 'center',
   tag = 'p',
-  onLetterAnimationComplete
-}: SplitTextProps) => {
+  onLetterAnimationComplete = undefined,
+  customTrigger = null,
+  onScrollReplay = false
+}: {
+  text?: string;
+  className?: string;
+  delay?: number;
+  duration?: number;
+  ease?: string;
+  splitType?: string;
+  from?: any;
+  to?: any;
+  threshold?: number;
+  rootMargin?: string;
+  textAlign?: string;
+  tag?: any;
+  onLetterAnimationComplete?: () => void;
+  customTrigger?: any;
+  onScrollReplay?: boolean;
+}) => {
   const ref = useRef<any>(null);
   const animationCompletedRef = useRef(false);
   const onCompleteRef = useRef(onLetterAnimationComplete);
@@ -114,9 +116,10 @@ const SplitText = ({
               ease,
               stagger: delay / 1000,
               scrollTrigger: {
-                trigger: el,
+                trigger: customTrigger || el,
                 start,
-                once: true,
+                once: !onScrollReplay,
+                ...(onScrollReplay ? { toggleActions: 'play none none reset' } : {}),
                 fastScrollEnd: true,
                 anticipatePin: 0.4
               },
@@ -134,7 +137,7 @@ const SplitText = ({
 
       return () => {
         ScrollTrigger.getAll().forEach(st => {
-          if (st.trigger === el) st.kill();
+          if (st.trigger === (customTrigger || el)) st.kill();
         });
         try {
           splitInstance.revert();
@@ -155,7 +158,9 @@ const SplitText = ({
         JSON.stringify(to),
         threshold,
         rootMargin,
-        fontsLoaded
+        fontsLoaded,
+        customTrigger,
+        onScrollReplay
       ],
       scope: ref
     }
@@ -168,7 +173,7 @@ const SplitText = ({
       willChange: 'transform, opacity'
     };
     const classes = `split-parent overflow-hidden inline-block whitespace-normal ${className}`;
-    const Tag = (tag || 'p') as any;
+    const Tag = tag || 'p';
 
     return (
       <Tag ref={ref} style={style} className={classes}>

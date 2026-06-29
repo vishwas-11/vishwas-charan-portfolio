@@ -2,6 +2,7 @@ import Image from "next/image";
 import { Reveal } from "@/components/ui/Reveal";
 import SplitText from "@/components/ui/SplitText";
 import BlurText from "@/components/ui/BlurText";
+import TextType from "@/components/ui/TextType";
 import { ArrowRight, Mail } from "lucide-react";
 
 export default function Hero() {
@@ -25,8 +26,22 @@ export default function Hero() {
             </div>
             
             {/* Professional Status Badge */}
-            <div className="inline-flex items-center rounded-full border border-border bg-accent/50 px-4 py-1.5 text-xs sm:text-sm font-medium text-muted-foreground backdrop-blur-sm transition-colors hover:text-foreground hover:bg-accent/80 cursor-default">
-              AI Engineer & Full-Stack Developer
+            <div className="inline-flex items-center rounded-full border border-border bg-accent/50 px-4 py-1.5 text-xs sm:text-sm font-medium text-muted-foreground backdrop-blur-sm transition-colors hover:text-foreground hover:bg-accent/80 cursor-default h-8">
+              <TextType 
+                text={[
+                  "AI Engineer & Full-Stack Developer", 
+                  "AI agents, GenAI, Langchain", 
+                  "Python, Nodejs, Typescript"
+                ]}
+                typingSpeed={45}
+                variableSpeed={{ min: 35, max: 80 }}
+                pauseDuration={2500}
+                deletingSpeed={20}
+                showCursor={true}
+                cursorCharacter="█"
+                cursorClassName="animate-pulse text-muted-foreground/60 text-[10px] ml-1.5 align-middle"
+                loop={true}
+              />
             </div>
           </div>
         </Reveal>
@@ -43,6 +58,7 @@ export default function Hero() {
             to={{ opacity: 1, y: 0, rotationX: 0 }}
             threshold={0.1}
             tag="h1"
+            textAlign="left"
           />
           
           <BlurText
