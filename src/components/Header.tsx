@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { Home, LayoutGrid, User, PenLine } from 'lucide-react';
+import { Home, User, PenLine } from 'lucide-react';
 import { AnimatedThemeToggle } from '@/components/ui/animated-theme-toggle';
 import { Dock, DockIcon } from '@/components/ui/dock';
 
@@ -25,17 +25,7 @@ export default function Header() {
           </div>
         </DockIcon>
 
-        <DockIcon>
-          <div className="group relative h-full w-full">
-            <Link href="/projects" className="flex h-full w-full items-center justify-center rounded-full text-foreground transition-colors">
-              <LayoutGrid className="h-5 w-5" />
-            </Link>
-            <div className={tooltipClasses}>
-              <div className={tooltipArrow} />
-              Projects
-            </div>
-          </div>
-        </DockIcon>
+
 
         <DockIcon>
           <div className="group relative h-full w-full">
