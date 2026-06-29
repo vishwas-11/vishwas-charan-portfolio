@@ -2,7 +2,6 @@ import Hero from "@/components/sections/Hero";
 import Resume from "@/components/sections/Resume";
 import SelectedWork from "@/components/sections/SelectedWork";
 import MyStack from "@/components/sections/MyStack";
-import About from "@/components/sections/About";
 import GithubGrid from "@/components/GithubGrid";
 
 export default function Home() {
@@ -12,7 +11,6 @@ export default function Home() {
       <Resume />
       <SelectedWork />
       <MyStack />
-      <About />
       <GithubGrid />
     </div>
   );

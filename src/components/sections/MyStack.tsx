@@ -1,24 +1,18 @@
+"use client";
+
 import { Reveal } from "@/components/ui/Reveal";
-import { 
-  Terminal, 
-  Database, 
-  Server, 
-  Code2, 
-  Layers, 
-  Cpu, 
-  Box, 
-  Wrench 
-} from "lucide-react";
 
 const stackItems = [
-  { id: "ts", icon: Code2, color: "#3178C6" },
-  { id: "next", icon: Layers, color: "#ffffff" },
-  { id: "js", icon: Terminal, color: "#F7DF1E" },
-  { id: "db", icon: Database, color: "#336791" },
-  { id: "backend", icon: Server, color: "#000000" },
-  { id: "docker", icon: Box, color: "#2496ED" },
-  { id: "infra", icon: Cpu, color: "#844FBA" },
-  { id: "tools", icon: Wrench, color: "#FF4785" },
+  { name: "TypeScript", icon: "typescript", color: "#3178C6" },
+  { name: "Node.js", icon: "nodedotjs", color: "#5FA04E" },
+  { name: "MongoDB", icon: "mongodb", color: "#47A248" },
+  { name: "Python", icon: "python", color: "#3776AB" },
+  { name: "LangChain", icon: "langchain", color: "#1C3C3C", invert: true },
+  { name: "FastAPI", icon: "fastapi", color: "#009688" },
+  { name: "Docker", icon: "docker", color: "#2496ED" },
+  { name: "Git", icon: "git", color: "#F05032" },
+  { name: "Next.js", icon: "nextdotjs", color: "#000000", invert: true },
+  { name: "Jira", icon: "jira", color: "#0052CC" },
 ];
 
 export default function MyStack() {
@@ -28,25 +22,26 @@ export default function MyStack() {
         <h2 className="text-2xl font-medium tracking-tight">My stack</h2>
       </Reveal>
       
-      <ul className="flex flex-wrap items-center gap-4 lg:justify-between">
-        {stackItems.map((item, index) => {
-          const Icon = item.icon;
-          return (
-            <li key={item.id}>
-              <Reveal delay={0.2 + index * 0.05} direction="up">
-                <div 
-                  className="group flex h-24 w-24 shrink-0 items-center justify-center rounded-3xl bg-accent transition-all hover:-translate-y-1 hover:shadow-lg"
-                  style={{ "--brand-color": item.color } as React.CSSProperties}
-                >
-                  <Icon 
-                    className="h-10 w-10 text-muted-foreground transition-colors group-hover:text-[var(--brand-color)]" 
-                    strokeWidth={1.5}
-                  />
-                </div>
-              </Reveal>
-            </li>
-          );
-        })}
+      <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-6">
+        {stackItems.map((item, index) => (
+          <li key={item.name}>
+            <Reveal delay={0.2 + index * 0.05} direction="up" overflow="visible">
+              <div 
+                className="group relative flex h-28 flex-col items-center justify-center gap-3 rounded-2xl border border-border/50 bg-accent/50 p-4 transition-all duration-500 hover:-translate-y-2 hover:border-border hover:bg-accent hover:shadow-[0_0_1.5rem_var(--brand-color)]"
+                style={{ "--brand-color": item.invert ? "rgba(150, 150, 150, 0.2)" : `${item.color}40` } as React.CSSProperties}
+              >
+                <img 
+                  src={`https://cdn.simpleicons.org/${item.icon}/${item.color.replace('#', '')}`}
+                  alt={item.name}
+                  className={`h-10 w-10 transition-all duration-500 grayscale opacity-60 group-hover:grayscale-0 group-hover:opacity-100 group-hover:scale-110 ${item.invert ? "dark:invert" : ""}`}
+                />
+                <span className="text-xs font-medium text-muted-foreground transition-colors duration-300 group-hover:text-foreground">
+                  {item.name}
+                </span>
+              </div>
+            </Reveal>
+          </li>
+        ))}
       </ul>
     </section>
   );
