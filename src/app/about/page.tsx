@@ -1,8 +1,10 @@
 import SplitText from "@/components/ui/SplitText";
 import { Reveal } from "@/components/ui/Reveal";
 import { ArrowUpRight } from "lucide-react";
+import { InstagramIcon, YoutubeIcon } from "@/components/ui/icons";
 import { Polaroid } from "@/components/ui/Polaroid";
 import { InteractiveGallery } from "@/components/ui/interactive-gallery";
+import { AnimatedSocialButton } from "@/components/ui/AnimatedSocialButton";
 import RotatingText from "@/components/ui/RotatingText";
 import ScrollFloat from "@/components/ui/ScrollFloat";
 import RockBackgroundTransition from "@/components/ui/RockBackgroundTransition";
@@ -242,6 +244,35 @@ export default function AboutPage() {
                 Whether I'm writing code or performing on stage, the goal is surprisingly similar: create something that leaves people with an experience they'll remember.
               </p>
             </div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* Socials Section */}
+      <section className="w-full max-w-5xl mx-auto px-4 py-24 md:py-32 relative z-10 flex flex-col items-center">
+        <Reveal delay={0.2} overflow="visible">
+          <h3 className="text-sm md:text-base font-medium tracking-[0.2em] uppercase text-foreground/80 mb-10 text-center">
+            Catch me jamming here
+          </h3>
+        </Reveal>
+        
+        <div className="flex items-center gap-6 md:gap-10">
+          <Reveal delay={0.3} overflow="visible">
+            <AnimatedSocialButton 
+              href="https://www.instagram.com/vishwascharan_official?igsh=MWRyZXE5Y3JraDhkdA=="
+              label="Instagram"
+              icon={<InstagramIcon className="w-8 h-8 md:w-10 md:h-10" strokeWidth={1.5} />}
+              hoverColorClass="group-hover:text-pink-500"
+            />
+          </Reveal>
+          
+          <Reveal delay={0.4} overflow="visible">
+            <AnimatedSocialButton 
+              href="https://www.youtube.com/@vishwascharanofficial"
+              label="YouTube"
+              icon={<YoutubeIcon className="w-8 h-8 md:w-10 md:h-10" strokeWidth={1.5} />}
+              hoverColorClass="group-hover:text-red-500"
+            />
           </Reveal>
         </div>
       </section>
