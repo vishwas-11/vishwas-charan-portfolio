@@ -4,6 +4,7 @@ import { useState, useRef, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Polaroid } from "./Polaroid";
 import { cn } from "@/lib/utils";
+import { MousePointerClick } from "lucide-react";
 import gsap from "gsap";
 import { Flip } from "gsap/Flip";
 
@@ -302,15 +303,18 @@ export function InteractiveGallery({ items }: InteractiveGalleryProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20, filter: "blur(4px)" }}
             transition={{ delay: 0.5 }}
-            className="absolute top-1/2 mt-[200px] left-1/2 -translate-x-1/2 text-center pointer-events-none"
+            className="absolute top-1/2 mt-[220px] left-1/2 -translate-x-1/2 z-10 pointer-events-none"
           >
-            <motion.p 
-              animate={{ opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="text-amber-500/80 font-heading italic text-xl md:text-2xl tracking-wide"
+            <motion.div 
+              animate={{ y: [0, -8, 0] }}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+              className="flex items-center gap-3 px-6 py-3 rounded-full bg-foreground/5 border border-foreground/10 backdrop-blur-md shadow-xl dark:bg-white/5 dark:border-white/10"
             >
-              Click stack to reveal
-            </motion.p>
+              <MousePointerClick className="w-4 h-4 text-amber-500" />
+              <span className="text-foreground/90 dark:text-white/90 text-xs md:text-sm font-semibold tracking-[0.15em] uppercase">
+                Click stack to reveal
+              </span>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

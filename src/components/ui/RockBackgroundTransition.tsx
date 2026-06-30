@@ -38,9 +38,13 @@ export default function RockBackgroundTransition() {
     if (!isDark) return;
 
     const anim = gsap.fromTo(pageWrapper, 
-      { backgroundColor: 'transparent' }, 
+      { backgroundColor: '#000000' }, // Hardcode pure black start so it never interpolates an alpha/transparent channel
       {
-        backgroundColor: '#0a1128', // Midnight blue for dark mode
+        keyframes: [
+          { backgroundColor: '#020617' }, // Very dark slate/blue
+          { backgroundColor: '#060b20' }, // Darker blue
+          { backgroundColor: '#0a1128' }  // Target midnight blue
+        ],
         ease: 'power1.inOut',
         scrollTrigger: {
           trigger: triggerSection,
