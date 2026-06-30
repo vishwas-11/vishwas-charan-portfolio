@@ -1,4 +1,5 @@
 "use client";
+// Force recompile to fix HMR hydration mismatch
 
 import * as React from "react";
 import { useEffect, useRef, useState } from "react";
@@ -7,6 +8,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { motion, useSpring } from "framer-motion";
 import { Check, ArrowUpRight, Copy, ArrowUp } from "lucide-react";
 import SplitText from "./SplitText";
+import BlurText from "./BlurText";
 
 // Register ScrollTrigger safely for React
 if (typeof window !== "undefined") {
@@ -155,9 +157,16 @@ export function CinematicFooter() {
               />
             </div>
             
-            <p className="text-muted-foreground text-sm md:text-base max-w-md mx-auto">
-              Want to roast my code or talk about music? Drop me a line. I promise I write better guitar riffs than I do Backend APIs.
-            </p>
+            <div className="max-w-md mx-auto">
+              <BlurText
+                text="Want to roast my code or talk about music? Drop me a line. I promise I write better guitar riffs than I do Backend APIs."
+                className="text-muted-foreground text-sm md:text-base justify-center"
+                delay={20}
+                animateBy="words"
+                direction="top"
+                onScrollReplay={true}
+              />
+            </div>
           </div>
 
           <div ref={linksRef} className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-10 w-full mt-8">

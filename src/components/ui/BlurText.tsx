@@ -26,6 +26,7 @@ export interface BlurTextProps {
   easing?: string | ((t: number) => number);
   onAnimationComplete?: () => void;
   stepDuration?: number;
+  onScrollReplay?: boolean;
 }
 
 const BlurText = ({
@@ -40,7 +41,8 @@ const BlurText = ({
   animationTo,
   easing = (t) => t,
   onAnimationComplete,
-  stepDuration = 0.35
+  stepDuration = 0.35,
+  onScrollReplay = false,
 }: BlurTextProps) => {
   const elements = animateBy === 'words' ? text.split(' ') : text.split('');
   const [inView, setInView] = useState(false);
@@ -52,14 +54,18 @@ const BlurText = ({
       ([entry]) => {
         if (entry.isIntersecting) {
           setInView(true);
-          observer.unobserve(ref.current!);
+          if (!onScrollReplay) {
+            observer.unobserve(ref.current!);
+          }
+        } else if (onScrollReplay) {
+          setInView(false);
         }
       },
       { threshold, rootMargin }
     );
     observer.observe(ref.current);
     return () => observer.disconnect();
-  }, [threshold, rootMargin]);
+  }, [threshold, rootMargin, onScrollReplay]);
 
   const defaultFrom = useMemo(
     () =>
