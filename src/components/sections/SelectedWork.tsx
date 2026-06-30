@@ -27,7 +27,7 @@ const projects = [
     role: "AI Developer | Full-Stack Developer",
     description: "An AI-assisted hiring workflow platform with a Next.js frontend and FastAPI backend. Supports role-based authentication, chat-driven workflows, interview scheduling, and employee record lookup.",
     skills: ["LangChain", "Next.js", "FastAPI", "OpenAI API", "MongoDB"],
-    image: "/images/projects/recruitflow.jpg",
+    image: "/images/projects/recruitFlow.jpg",
     link: "https://recruit-flow-autonomous-hr-system.vercel.app"
   },
   {
