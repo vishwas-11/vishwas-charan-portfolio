@@ -2,6 +2,7 @@ import SplitText from "@/components/ui/SplitText";
 import { Reveal } from "@/components/ui/Reveal";
 import { ArrowUpRight } from "lucide-react";
 import { Polaroid } from "@/components/ui/Polaroid";
+import { InteractiveGallery } from "@/components/ui/interactive-gallery";
 import fs from "fs";
 import path from "path";
 
@@ -28,6 +29,87 @@ export const metadata = {
 };
 
 export default function AboutPage() {
+  const galleryItems = [
+    {
+      id: "img1",
+      src: getImagePath("music1"),
+      alt: "Live performance on stage",
+      caption: "Center Stage",
+      rotation: "-rotate-3",
+      stackedRotation: "-6",
+      scatteredClassName: "md:-mt-12 md:ml-4",
+      annotation: {
+        text: "feeling the crowd",
+        className: "-top-6 -left-10 text-xl -rotate-12 hidden md:block"
+      }
+    },
+    {
+      id: "img2",
+      src: getImagePath("music2"),
+      alt: "Live show encore",
+      caption: "The Encore",
+      rotation: "rotate-2",
+      stackedRotation: "4",
+      scatteredClassName: "md:mt-16",
+      annotation: {
+        text: "one more song!",
+        className: "-bottom-10 right-0 text-xl rotate-6 hidden md:block"
+      }
+    },
+    {
+      id: "img3",
+      src: getImagePath("music3"),
+      alt: "Lead vocals",
+      caption: "Frontman",
+      rotation: "-rotate-2",
+      stackedRotation: "-4",
+      scatteredClassName: "md:-mt-4 md:-ml-8",
+      annotation: {
+        text: "owning the mic",
+        className: "-top-10 right-4 text-xl rotate-12 hidden md:block"
+      }
+    },
+    {
+      id: "img4",
+      src: getImagePath("music4"),
+      alt: "Guitar solos",
+      caption: "Loud & Proud",
+      rotation: "rotate-[4deg]",
+      stackedRotation: "2",
+      scatteredClassName: "md:mt-8 md:ml-6",
+      annotation: {
+        text: "shaking the floor",
+        className: "-bottom-10 -left-6 text-xl -rotate-6 hidden md:block"
+      }
+    },
+    {
+      id: "img5",
+      src: getImagePath("music5"),
+      alt: "Live show",
+      caption: "The Energy",
+      rotation: "-rotate-3",
+      stackedRotation: "-8",
+      scatteredClassName: "md:mt-24",
+      annotation: {
+        text: "electric!",
+        className: "-bottom-12 right-0 text-2xl rotate-6 hidden md:block"
+      }
+    },
+    {
+      id: "img6",
+      src: getImagePath("music_six"),
+      alt: "Amplifiers and crowd",
+      caption: "Heavy Riffs",
+      rotation: "rotate-2",
+      stackedRotation: "6",
+      scatteredClassName: "md:-mt-8 md:-ml-4",
+      annotation: {
+        text: "max volume",
+        className: "-bottom-8 -right-6 text-xl rotate-12 hidden md:block"
+      }
+    }
+  ];
+
   return (
     <div className="flex flex-col pb-20">
       <section className="w-full max-w-4xl mx-auto px-4 py-32 md:px-8 space-y-10 relative min-h-[60vh]">
@@ -98,85 +180,7 @@ export default function AboutPage() {
           </div>
         </Reveal>
 
-        {/* Polaroids Gallery */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 mt-12 py-10 max-w-6xl mx-auto items-center">
-          
-          {/* Polaroid 1 */}
-          <div className="relative justify-self-center">
-            <Polaroid 
-              src={getImagePath("music1")} 
-              alt="Live performance on stage"
-              caption="Live on Stage"
-              rotation="-rotate-3"
-              className="w-64 sm:w-60 md:w-72"
-            />
-            {/* Hand-written annotation */}
-            <div className="absolute -bottom-6 -right-10 font-heading italic text-red-500/90 text-2xl rotate-12 hidden md:block z-10 pointer-events-none">
-              built it. won it.
-            </div>
-          </div>
-
-          {/* Polaroid 2 */}
-          <div className="relative justify-self-center mt-0 md:mt-16">
-            <Polaroid 
-              src={getImagePath("music2")} 
-              alt="Studio sessions"
-              caption="Studio Sessions"
-              rotation="rotate-2"
-              className="w-64 sm:w-60 md:w-72"
-            />
-          </div>
-
-          {/* Polaroid 3 */}
-          <div className="relative justify-self-center mt-0 md:mt-4">
-            <Polaroid 
-              src={getImagePath("music3")} 
-              alt="Vintage microphone"
-              caption="Vocals"
-              rotation="-rotate-2"
-              className="w-64 sm:w-60 md:w-72"
-            />
-            <div className="absolute -top-8 -left-8 font-heading italic text-red-500/90 text-xl -rotate-6 hidden md:block z-10 pointer-events-none">
-              always in the room
-            </div>
-          </div>
-
-          {/* Polaroid 4 */}
-          <div className="relative justify-self-center mt-0 md:-mt-8">
-            <Polaroid 
-              src={getImagePath("music4")} 
-              alt="Drums in studio"
-              caption="Rhythm Section"
-              rotation="rotate-[4deg]"
-              className="w-64 sm:w-60 md:w-72"
-            />
-          </div>
-
-          {/* Polaroid 5 */}
-          <div className="relative justify-self-center mt-0 md:mt-12">
-            <Polaroid 
-              src={getImagePath("music5")} 
-              alt="Live show"
-              caption="The Energy"
-              rotation="-rotate-3"
-              className="w-64 sm:w-60 md:w-72"
-            />
-            <div className="absolute -bottom-4 -left-12 font-heading italic text-red-500/90 text-2xl -rotate-12 hidden md:block z-10 pointer-events-none">
-              electric!
-            </div>
-          </div>
-
-          {/* Polaroid 6 */}
-          <div className="relative justify-self-center mt-0 md:mt-4">
-            <Polaroid 
-              src={getImagePath("music_six")} 
-              alt="Guitar practice"
-              caption="Late Nights"
-              rotation="rotate-2"
-              className="w-64 sm:w-60 md:w-72"
-            />
-          </div>
-        </div>
+        <InteractiveGallery items={galleryItems} />
       </section>
     </div>
   );
