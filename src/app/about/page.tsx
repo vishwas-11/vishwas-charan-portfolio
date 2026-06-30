@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { Polaroid } from "@/components/ui/Polaroid";
 import { InteractiveGallery } from "@/components/ui/interactive-gallery";
 import RotatingText from "@/components/ui/RotatingText";
+import ScrollFloat from "@/components/ui/ScrollFloat";
 import fs from "fs";
 import path from "path";
 
@@ -179,11 +180,9 @@ export default function AboutPage() {
               </p>
             </Reveal>
 
-            <Reveal delay={0.6} overflow="visible">
-              <p className="font-medium text-foreground">
-                For me, great software isn't just about writing code, it's about solving meaningful problems with thoughtful engineering.
-              </p>
-            </Reveal>
+            <SplitText splitType="words" delay={30} threshold={0.1} className="font-medium text-foreground">
+              For me, great software isn't just about writing code, it's about solving meaningful problems with thoughtful engineering.
+            </SplitText>
           </div>
         </div>
       </section>
@@ -191,21 +190,23 @@ export default function AboutPage() {
       {/* Beyond the Code Section */}
       <section className="w-full max-w-5xl mx-auto px-4 py-24 md:px-8 space-y-16 relative">
         <div className="flex flex-col items-center text-center space-y-4">
-          <Reveal>
-            <p className="text-xs md:text-sm font-medium tracking-[0.2em] text-foreground/40 uppercase mb-2">
-              Scroll for more amazing stuff
-            </p>
-            <h2 className="font-heading text-3xl md:text-5xl font-medium tracking-tight text-foreground">
-              Beyond the Code
-            </h2>
-          </Reveal>
+          <ScrollFloat
+            animationDuration={1}
+            ease="back.inOut(2)"
+            scrollStart="center bottom+=50%"
+            scrollEnd="bottom bottom-=40%"
+            stagger={0.03}
+            containerClassName="font-heading text-3xl md:text-5xl font-medium tracking-tight text-foreground"
+          >
+            Beyond the Code
+          </ScrollFloat>
           <SplitText
             className="text-foreground/80 text-lg sm:text-xl max-w-2xl font-light leading-relaxed"
             splitType="words"
             delay={20}
             threshold={0.1}
           >
-            When I'm not writing algorithms or architecting backend systems, you'll probably find me with a guitar in my hands. I'm a rock musician at heart—whether it's performing live on stage or laying down tracks in the studio, music is my ultimate creative outlet.
+            When I'm not writing algorithms or architecting backend systems, you'll probably find me with a guitar in my hands. I'm a rock musician at heart, whether it's performing live on stage or laying down tracks in the studio, music is my ultimate creative outlet.
           </SplitText>
         </div>
 
