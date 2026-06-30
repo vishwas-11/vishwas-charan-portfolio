@@ -70,7 +70,7 @@ export default function Hero() {
             direction="top"
           />
           <BlurText
-            text="There's more to the story than a few buzzwords. Scroll down and let's dive in."
+            text="There's more to the story than a few buzzwords. Scroll down and let's dive in....."
             className="font-heading italic font-light text-xl sm:text-2xl text-amber-300/90 mt-2"
             delay={20}
             animateBy="words"

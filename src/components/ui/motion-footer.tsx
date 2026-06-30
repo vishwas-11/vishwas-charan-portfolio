@@ -5,8 +5,8 @@ import * as React from "react";
 import { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { motion, useSpring } from "framer-motion";
-import { Check, ArrowUpRight, Copy, ArrowUp } from "lucide-react";
+import { motion, useSpring, AnimatePresence } from "framer-motion";
+import { Check, ArrowUpRight, Copy, ArrowUp, MapPin, PhoneCall } from "lucide-react";
 import SplitText from "./SplitText";
 import BlurText from "./BlurText";
 
@@ -55,6 +55,7 @@ export function CinematicFooter() {
   const linksRef = useRef<HTMLDivElement>(null);
   const [copied, setCopied] = useState(false);
   const [triggerEl, setTriggerEl] = useState<HTMLDivElement | null>(null);
+  const [showPhone, setShowPhone] = useState(false);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText("vishwascharan11@gmail.com");
@@ -167,6 +168,18 @@ export function CinematicFooter() {
                 onScrollReplay={true}
               />
             </div>
+
+            <div className="flex items-center justify-center gap-2 mt-8 text-muted-foreground">
+              <MapPin className="w-4 h-4 text-amber-500/80" />
+              <BlurText
+                text="NOIDA, INDIA"
+                className="text-sm font-medium tracking-[0.1em] uppercase m-0"
+                delay={20}
+                animateBy="words"
+                direction="top"
+                onScrollReplay={true}
+              />
+            </div>
           </div>
 
           <div ref={linksRef} className="flex flex-col sm:flex-row items-center justify-center gap-6 md:gap-10 w-full mt-8">
@@ -188,16 +201,31 @@ export function CinematicFooter() {
             <Magnetic>
               <motion.a
                 whileTap={{ scale: 0.95 }}
-                href="https://x.com/charan_722"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative flex h-11 w-full sm:w-auto items-center justify-center gap-3 rounded-full border border-border bg-background/50 backdrop-blur-sm px-6 text-foreground transition-colors hover:bg-accent hover:text-accent-foreground overflow-hidden shadow-sm"
+                href={showPhone ? "tel:+917906024886" : "#"}
+                onClick={(e) => {
+                  if (!showPhone) {
+                    e.preventDefault();
+                    setShowPhone(true);
+                  }
+                }}
+                className="group relative flex h-11 w-full sm:w-auto items-center justify-center gap-3 rounded-full border border-border bg-background/50 backdrop-blur-sm px-6 text-foreground transition-all duration-300 hover:bg-accent hover:text-accent-foreground overflow-hidden shadow-sm"
+                style={{ width: showPhone ? 'auto' : undefined }}
               >
-                <span className="text-sm font-medium">
-                  Slide into DMs
-                </span>
-                <span className="flex items-center justify-center transition-transform group-hover:scale-110 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
-                  <ArrowUpRight className="h-4 w-4" />
+                <AnimatePresence mode="wait">
+                  <motion.span
+                    key={showPhone ? "phone" : "call"}
+                    initial={{ opacity: 0, y: 15 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -15 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className="text-sm font-medium"
+                  >
+                    {showPhone ? "+91 7906024886" : "Quick call"}
+                  </motion.span>
+                </AnimatePresence>
+
+                <span className="flex items-center justify-center transition-transform group-hover:scale-110 group-hover:rotate-12">
+                  <PhoneCall className="h-4 w-4 text-foreground group-hover:animate-pulse" />
                 </span>
               </motion.a>
             </Magnetic>
