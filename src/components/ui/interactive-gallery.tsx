@@ -56,6 +56,14 @@ export function InteractiveGallery({ items }: InteractiveGalleryProps) {
       );
 
       stateRef.current = null;
+      
+      // Refresh ScrollTrigger after the longest animation (1.2s) finishes 
+      // so any ScrollTriggers below (like CinematicFooter) get the correct new page height.
+      setTimeout(() => {
+        import("gsap/ScrollTrigger").then((module) => {
+          module.ScrollTrigger.refresh();
+        });
+      }, 1250);
     }
   }, [isExpanded]);
 

@@ -53,7 +53,6 @@ export const CinematicFooter = () => {
       duration: 0.8,
       ease: "power3.out"
     }, 0.2);
-
   }, { scope: containerRef });
 
   return (
