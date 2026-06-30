@@ -2,6 +2,25 @@ import SplitText from "@/components/ui/SplitText";
 import { Reveal } from "@/components/ui/Reveal";
 import { ArrowUpRight } from "lucide-react";
 import { Polaroid } from "@/components/ui/Polaroid";
+import fs from "fs";
+import path from "path";
+
+function getImagePath(baseName: string) {
+  const extensions = ['.png', '.jpg', '.jpeg', '.webp', '.JPG', '.PNG', '.JPEG'];
+  const baseDir = path.join(process.cwd(), 'public', 'images', 'about');
+  
+  try {
+    for (const ext of extensions) {
+      const filePath = path.join(baseDir, baseName + ext);
+      if (fs.existsSync(filePath)) {
+        return `/images/about/${baseName}${ext}`;
+      }
+    }
+  } catch (e) {
+    // Ignore fs errors at runtime if deployed
+  }
+  return `/images/about/${baseName}.png`; // fallback
+}
 
 export const metadata = {
   title: "About | Vishwas - Portfolio",
@@ -79,43 +98,82 @@ export default function AboutPage() {
           </div>
         </Reveal>
 
-        {/* Polaroids Container */}
-        <div className="relative w-full h-[800px] md:h-[600px] flex items-center justify-center mt-12 py-10 overflow-hidden md:overflow-visible">
+        {/* Polaroids Gallery */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 mt-12 py-10 max-w-6xl mx-auto items-center">
           
           {/* Polaroid 1 */}
-          <div className="absolute z-20 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-[10%] top-[5%] md:top-[5%] w-64 md:w-72">
+          <div className="relative justify-self-center">
             <Polaroid 
-              src="/images/about/music1.png" 
+              src={getImagePath("music1")} 
               alt="Live performance on stage"
               caption="Live on Stage"
-              rotation="-rotate-6"
+              rotation="-rotate-3"
+              className="w-64 sm:w-60 md:w-72"
             />
             {/* Hand-written annotation */}
-            <div className="absolute -bottom-6 -right-16 font-heading italic text-red-500/90 text-2xl md:text-3xl rotate-12 hidden md:block">
+            <div className="absolute -bottom-6 -right-10 font-heading italic text-red-500/90 text-2xl rotate-12 hidden md:block z-10 pointer-events-none">
               built it. won it.
             </div>
           </div>
 
           {/* Polaroid 2 */}
-          <div className="absolute z-30 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-[35%] top-[35%] md:top-[15%] w-72 md:w-80">
+          <div className="relative justify-self-center mt-0 md:mt-16">
             <Polaroid 
-              src="/images/about/music2.png" 
+              src={getImagePath("music2")} 
               alt="Studio sessions"
               caption="Studio Sessions"
               rotation="rotate-2"
+              className="w-64 sm:w-60 md:w-72"
             />
-            <div className="absolute -top-10 -right-8 font-heading italic text-red-500/90 text-2xl md:text-3xl -rotate-6 hidden md:block">
+          </div>
+
+          {/* Polaroid 3 */}
+          <div className="relative justify-self-center mt-0 md:mt-4">
+            <Polaroid 
+              src={getImagePath("music3")} 
+              alt="Vintage microphone"
+              caption="Vocals"
+              rotation="-rotate-2"
+              className="w-64 sm:w-60 md:w-72"
+            />
+            <div className="absolute -top-8 -left-8 font-heading italic text-red-500/90 text-xl -rotate-6 hidden md:block z-10 pointer-events-none">
               always in the room
             </div>
           </div>
 
-          {/* Polaroid 3 */}
-          <div className="absolute z-10 left-1/2 -translate-x-1/2 md:translate-x-0 md:right-[10%] md:left-auto top-[65%] md:top-[30%] w-56 md:w-64">
+          {/* Polaroid 4 */}
+          <div className="relative justify-self-center mt-0 md:-mt-8">
             <Polaroid 
-              src="/images/about/music3.png" 
-              alt="Vintage microphone"
-              caption="Vocals"
-              rotation="rotate-[8deg]"
+              src={getImagePath("music4")} 
+              alt="Drums in studio"
+              caption="Rhythm Section"
+              rotation="rotate-[4deg]"
+              className="w-64 sm:w-60 md:w-72"
+            />
+          </div>
+
+          {/* Polaroid 5 */}
+          <div className="relative justify-self-center mt-0 md:mt-12">
+            <Polaroid 
+              src={getImagePath("music5")} 
+              alt="Live show"
+              caption="The Energy"
+              rotation="-rotate-3"
+              className="w-64 sm:w-60 md:w-72"
+            />
+            <div className="absolute -bottom-4 -left-12 font-heading italic text-red-500/90 text-2xl -rotate-12 hidden md:block z-10 pointer-events-none">
+              electric!
+            </div>
+          </div>
+
+          {/* Polaroid 6 */}
+          <div className="relative justify-self-center mt-0 md:mt-4">
+            <Polaroid 
+              src={getImagePath("music_six")} 
+              alt="Guitar practice"
+              caption="Late Nights"
+              rotation="rotate-2"
+              className="w-64 sm:w-60 md:w-72"
             />
           </div>
         </div>
