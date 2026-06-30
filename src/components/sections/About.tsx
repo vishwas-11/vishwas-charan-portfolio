@@ -6,7 +6,7 @@ export default function About() {
     <section className="w-full max-w-4xl mx-auto px-4 py-12 md:px-8 space-y-16">
       <div className="space-y-10 max-w-3xl">
         <Reveal delay={0.1}>
-          <h2 className="text-2xl font-medium tracking-tight">About</h2>
+          <h2 className="text-3xl font-heading font-medium tracking-tight">About</h2>
         </Reveal>
         <div className="text-muted-foreground space-y-8 text-lg">
           <Reveal delay={0.2}>
@@ -44,7 +44,7 @@ export default function About() {
               </div>
             </li>
           </Reveal>
-          
+
           <Reveal delay={0.4} direction="up" className="w-1/3 max-w-[250px]">
             <li className="relative w-full aspect-square">
               <div className="relative w-full h-full overflow-hidden rounded-3xl -rotate-[4deg] border border-border/50 shadow-xl transition-transform hover:rotate-0 hover:scale-105 duration-500">

@@ -45,7 +45,7 @@ export default function SelectedWork() {
   return (
     <section id="work" className="w-full max-w-4xl mx-auto px-4 py-12 md:px-8 space-y-10">
       <Reveal delay={0.1}>
-        <h2 className="text-2xl font-medium tracking-tight">Selected work</h2>
+        <h2 className="text-3xl font-heading font-medium tracking-tight">Selected work</h2>
       </Reveal>
 
       <ul className="grid gap-x-6 gap-y-12 md:grid-cols-2">

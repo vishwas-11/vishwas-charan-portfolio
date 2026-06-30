@@ -9,9 +9,9 @@ export default function Resume() {
       {/* Work Experience */}
       <div className="flex min-h-0 flex-col gap-y-3">
         <Reveal delay={0.1}>
-          <h2 className="text-xl font-bold">Work Experience</h2>
+          <h2 className="text-2xl font-heading font-medium tracking-tight">Work Experience</h2>
         </Reveal>
-        
+
         <Reveal delay={0.2}>
           <a className="block cursor-pointer" href="https://www.excellencetechnologies.in/" target="_blank" rel="noopener noreferrer">
             <div className="rounded-lg bg-card text-card-foreground flex p-3 hover:bg-muted/50 transition-colors">
@@ -100,9 +100,9 @@ export default function Resume() {
       {/* Education */}
       <div className="flex min-h-0 flex-col gap-y-3">
         <Reveal delay={0.5}>
-          <h2 className="text-xl font-bold">Education</h2>
+          <h2 className="text-2xl font-heading font-medium tracking-tight">Education</h2>
         </Reveal>
-        
+
         <Reveal delay={0.7}>
           <a className="block cursor-pointer" href="https://www.akgec.ac.in" target="_blank" rel="noopener noreferrer">
             <div className="rounded-lg bg-card text-card-foreground flex p-3 hover:bg-muted/50 transition-colors mt-2">

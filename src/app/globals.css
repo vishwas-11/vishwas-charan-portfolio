@@ -1,8 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&display=swap');
 @import "tailwindcss";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-:root, .light {
+:root,
+.light {
   --background: #fafafa;
   --foreground: #09090b;
   --muted: #f4f4f5;
@@ -39,9 +41,10 @@
   --color-border: var(--border);
   --color-accent: var(--accent);
   --color-accent-foreground: var(--accent-foreground);
-  
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-heading: 'Cormorant Garamond', serif;
 }
 
 html {
@@ -79,6 +82,7 @@ body {
   position: relative;
   text-decoration: none;
 }
+
 .link-underline::after {
   content: '';
   position: absolute;
@@ -91,6 +95,7 @@ body {
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
 }
+
 .link-underline:hover::after {
   transform: scaleX(1);
   transform-origin: bottom left;

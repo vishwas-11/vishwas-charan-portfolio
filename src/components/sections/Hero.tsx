@@ -10,7 +10,7 @@ export default function Hero() {
     <section className="w-full max-w-4xl mx-auto px-4 py-24 md:px-8 space-y-10 relative">
       {/* Subtle ambient background glow */}
       <div className="absolute top-0 left-10 -z-10 h-64 w-64 rounded-full bg-primary/5 blur-[100px] pointer-events-none" />
-      
+
       <div className="flex flex-col gap-8">
         <Reveal delay={0.1}>
           <div className="flex items-center gap-5">
@@ -24,13 +24,13 @@ export default function Hero() {
                 priority
               />
             </div>
-            
+
             {/* Professional Status Badge */}
             <div className="inline-flex items-center rounded-full border border-border bg-accent/50 px-4 py-1.5 text-xs sm:text-sm font-medium text-muted-foreground backdrop-blur-sm transition-colors hover:text-foreground hover:bg-accent/80 cursor-default h-8">
-              <TextType 
+              <TextType
                 text={[
-                  "AI Engineer & Full-Stack Developer", 
-                  "AI agents, GenAI, Langchain", 
+                  "AI Engineer & Full-Stack Developer",
+                  "AI agents, GenAI, Langchain",
                   "Python, Nodejs, Typescript"
                 ]}
                 typingSpeed={45}
@@ -45,11 +45,11 @@ export default function Hero() {
             </div>
           </div>
         </Reveal>
-        
+
         <div className="flex flex-col gap-6 max-w-3xl">
           <SplitText
-            text="Hi, I'm Vishwas."
-            className="text-4xl tracking-tight md:text-5xl lg:text-6xl font-semibold text-foreground"
+            text="Hi, It's Vishwas."
+            className="font-heading text-4xl md:text-5xl font-medium tracking-tight text-foreground"
             delay={50}
             duration={0.8}
             ease="power3.out"
@@ -60,37 +60,37 @@ export default function Hero() {
             tag="h1"
             textAlign="left"
           />
-          
-          <div className="flex flex-col gap-4">
-            <BlurText
-              text="AI-powered applications, production-grade backend systems, intelligent chatbots, and scalable architectures all held together with clean code (and occasionally caffeine)."
-              className="text-muted-foreground text-lg sm:text-xl leading-relaxed"
-              delay={20}
-              animateBy="words"
-              direction="top"
-            />
-            <BlurText
-              text="There's more to the story than a few buzzwords. Scroll down and let's dive in."
-              className="text-muted-foreground text-lg sm:text-xl leading-relaxed"
-              delay={20}
-              animateBy="words"
-              direction="top"
-            />
-          </div>
+
+        <div className="flex flex-col gap-5 max-w-3xl">
+          <BlurText
+            text="A full-stack dev by trade, AI agent wrangler by passion, and occasional therapist to his own slightly chaotic agents."
+            className="text-foreground/90 text-lg sm:text-xl leading-relaxed font-light"
+            delay={20}
+            animateBy="words"
+            direction="top"
+          />
+          <BlurText
+            text="There's more to the story than a few buzzwords. Scroll down and let's dive in."
+            className="font-heading italic font-light text-xl sm:text-2xl text-amber-300/90 mt-2"
+            delay={20}
+            animateBy="words"
+            direction="top"
+          />
         </div>
-        
+        </div>
+
         <Reveal delay={0.4}>
           <div className="flex flex-wrap items-center gap-4 pt-4">
-            <a 
-              href="#work" 
+            <a
+              href="#work"
               className="inline-flex h-11 items-center justify-center gap-2 rounded-full bg-primary px-6 text-sm font-medium text-primary-foreground transition-all hover:bg-primary/90 hover:scale-105 active:scale-95 shadow-sm"
             >
               Explore My Work
               <ArrowRight className="h-4 w-4" />
             </a>
-            
-            <a 
-              href="mailto:vishwascharan11@gmail.com" 
+
+            <a
+              href="mailto:vishwascharan11@gmail.com"
               className="inline-flex h-11 items-center justify-center gap-2 rounded-full border border-border bg-background px-6 text-sm font-medium text-foreground transition-all hover:bg-accent hover:text-accent-foreground hover:scale-105 active:scale-95 shadow-sm"
             >
               <Mail className="h-4 w-4" />
