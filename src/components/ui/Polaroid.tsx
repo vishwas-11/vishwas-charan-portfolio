@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { cn } from "@/lib/utils";
 
 interface PolaroidProps {
@@ -18,20 +17,33 @@ export function Polaroid({ src, alt, caption, rotation = "-rotate-2", className 
         className
       )}
     >
-      {/* Skeuomorphic Pin */}
-      <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-gradient-to-br from-red-500 to-red-700 shadow-md border border-red-800 z-20 flex items-center justify-center">
-         <div className="w-2 h-2 rounded-full bg-red-900/40 translate-y-0.5" />
-         <div className="absolute top-1 left-1 w-1.5 h-1.5 rounded-full bg-white/40" />
-      </div>
+      {/* Authentic Washi Tape */}
+      <svg 
+        className="absolute -top-3 left-1/2 -translate-x-1/2 w-16 h-6 z-20 -rotate-2 opacity-90 drop-shadow-[0_1px_2px_rgba(0,0,0,0.15)]" 
+        viewBox="0 0 100 30" 
+        preserveAspectRatio="none"
+      >
+        <defs>
+          <linearGradient id="tape-gradient" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="rgba(255,255,255,0.4)" />
+            <stop offset="100%" stopColor="rgba(0,0,0,0.05)" />
+          </linearGradient>
+          <filter id="paper-texture">
+            <feTurbulence type="fractalNoise" baseFrequency="0.8" result="noise" />
+            <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.1 0" in="noise" result="coloredNoise" />
+            <feBlend in="SourceGraphic" in2="coloredNoise" mode="multiply" />
+          </filter>
+        </defs>
+        <path d="M 4 0 L 96 0 Q 100 5 97 10 T 99 20 T 95 30 L 5 30 Q 0 25 3 20 T 1 10 T 4 0 Z" fill="#e8e5dc" filter="url(#paper-texture)" />
+        <path d="M 4 0 L 96 0 Q 100 5 97 10 T 99 20 T 95 30 L 5 30 Q 0 25 3 20 T 1 10 T 4 0 Z" fill="url(#tape-gradient)" />
+      </svg>
       <div className="relative w-full aspect-[4/5] bg-zinc-200 overflow-hidden">
         {/* Inner shadow overlay over the image to simulate recessed photo paper */}
         <div className="absolute inset-0 pointer-events-none shadow-[inset_0_2px_8px_rgba(0,0,0,0.15)] ring-1 ring-inset ring-black/5 z-10 mix-blend-overlay"></div>
-        <Image
+        <img
           src={src}
           alt={alt}
-          fill
-          className="object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
-          sizes="(max-width: 768px) 100vw, 400px"
+          className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-500"
         />
       </div>
       {caption && (

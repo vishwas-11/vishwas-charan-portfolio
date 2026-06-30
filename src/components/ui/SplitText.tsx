@@ -8,23 +8,8 @@ import { useGSAP } from '@gsap/react';
 
 gsap.registerPlugin(ScrollTrigger, GSAPSplitText, useGSAP);
 
-const SplitText = ({
-  text = '',
-  className = '',
-  delay = 50,
-  duration = 1.25,
-  ease = 'power3.out',
-  splitType = 'chars',
-  from = { opacity: 0, y: 40 },
-  to = { opacity: 1, y: 0 },
-  threshold = 0.1,
-  rootMargin = '-100px',
-  textAlign = 'center',
-  tag = 'p',
-  onLetterAnimationComplete = undefined,
-  customTrigger = null,
-  onScrollReplay = false
-}: {
+const SplitText = (props: {
+  children?: React.ReactNode;
   text?: string;
   className?: string;
   delay?: number;
@@ -41,6 +26,24 @@ const SplitText = ({
   customTrigger?: any;
   onScrollReplay?: boolean;
 }) => {
+  const {
+    children,
+    text = '',
+    className = '',
+    delay = 50,
+    duration = 1.25,
+    ease = 'power3.out',
+    splitType = 'chars',
+    from = { opacity: 0, y: 40 },
+    to = { opacity: 1, y: 0 },
+    threshold = 0.1,
+    rootMargin = '-100px',
+    textAlign = 'center',
+    tag = 'p',
+    onLetterAnimationComplete = undefined,
+    customTrigger = null,
+    onScrollReplay = false
+  } = props;
   const ref = useRef<any>(null);
   const animationCompletedRef = useRef(false);
   const onCompleteRef = useRef(onLetterAnimationComplete);
@@ -177,7 +180,7 @@ const SplitText = ({
 
     return (
       <Tag ref={ref} style={style} className={classes}>
-        {text}
+        {children || text}
       </Tag>
     );
   };

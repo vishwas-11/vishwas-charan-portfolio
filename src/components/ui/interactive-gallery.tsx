@@ -1,9 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useLayoutEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Polaroid } from "./Polaroid";
 import { cn } from "@/lib/utils";
+import gsap from "gsap";
+import { Flip } from "gsap/Flip";
+
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(Flip);
+}
 
 export interface GalleryItem {
   id: string;
@@ -25,13 +31,45 @@ interface InteractiveGalleryProps {
 
 export function InteractiveGallery({ items }: InteractiveGalleryProps) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const stateRef = useRef<Flip.FlipState | null>(null);
+
+  const toggleLayout = () => {
+    if (!containerRef.current) return;
+    stateRef.current = Flip.getState(".gallery-item");
+    setIsExpanded(!isExpanded);
+  };
+
+  useLayoutEffect(() => {
+    if (stateRef.current) {
+      Flip.from(stateRef.current, {
+        duration: 1.2,
+        ease: "power3.inOut",
+        stagger: 0.05,
+      });
+
+      // Animate the 3D card flip concurrently
+      gsap.fromTo(".gallery-item", 
+        { rotateY: isExpanded ? 0 : 360 }, 
+        { rotateY: isExpanded ? 360 : 0, duration: 1.2, ease: "power3.inOut", stagger: 0.05 }
+      );
+
+      stateRef.current = null;
+    }
+  }, [isExpanded]);
+
+  const getRot = (rotClass: string) => {
+    const match = rotClass.match(/-?rotate-(\d+)/);
+    if (!match) return 0;
+    const val = parseInt(match[1]);
+    return rotClass.startsWith('-') ? -val : val;
+  };
 
   return (
-    <div className="relative w-full max-w-6xl mx-auto py-20 flex flex-col items-center min-h-[600px] md:min-h-[800px]">
+    <div className="relative w-full max-w-6xl mx-auto py-20 flex flex-col items-center min-h-[600px] md:min-h-[800px]" ref={containerRef}>
       
       {/* Container switches between flex/center (stacked) and grid (expanded) */}
-      <motion.div 
-        layout
+      <div 
         className={cn(
           "w-full transition-all duration-700 ease-in-out relative",
           isExpanded 
@@ -207,65 +245,54 @@ export function InteractiveGallery({ items }: InteractiveGalleryProps) {
           )}
         </AnimatePresence>
 
-        <AnimatePresence>
-          {items.map((item, index) => (
-            <motion.div
-              layout
-              key={item.id}
-              onClick={() => !isExpanded && setIsExpanded(true)}
-              className={cn(
-                "relative cursor-pointer justify-self-center z-10",
-                !isExpanded && "absolute",
-                isExpanded && item.scatteredClassName
-              )}
-              initial={false}
-              animate={{
-                rotate: isExpanded ? 0 : parseFloat(item.stackedRotation),
-                rotateY: isExpanded ? 360 : 0,
-                zIndex: isExpanded ? 1 : items.length - index,
-                scale: isExpanded ? 1 : 1 - (index * 0.05),
-                y: isExpanded ? 0 : index * 8, // slight offset downwards
-              }}
-              transition={{
-                type: "tween",
-                ease: [0.23, 1, 0.32, 1], // extremely smooth custom ease (Quintic out)
-                duration: 1.2,
-                delay: isExpanded ? index * 0.1 : 0
-              }}
-              whileHover={isExpanded ? {
-                scale: 1.02,
-                y: -5,
-                zIndex: 50
-              } : {}}
-            >
+        {/* Items */}
+        {items.map((item, index) => (
+          <div
+            key={item.id}
+            onClick={() => !isExpanded && toggleLayout()}
+            className={cn(
+              "gallery-item relative cursor-pointer justify-self-center z-10",
+              !isExpanded && "absolute",
+              isExpanded && item.scatteredClassName
+            )}
+            style={{
+              zIndex: isExpanded ? 1 : items.length - index,
+              left: !isExpanded ? "50%" : "auto",
+              top: !isExpanded ? "50%" : "auto",
+              transform: isExpanded 
+                ? `rotate(${getRot(item.rotation)}deg)` 
+                : `translate(-50%, calc(-50% + ${index * 12}px)) scale(${1 - index * 0.02}) rotate(${item.stackedRotation}deg)`,
+            }}
+          >
+            <div className={cn("transition-transform duration-300", isExpanded && "hover:-translate-y-2 hover:scale-[1.02]")}>
               <Polaroid
                 src={item.src}
                 alt={item.alt}
                 caption={item.caption}
-                rotation={isExpanded ? item.rotation : ""}
+                rotation=""
                 className={cn("w-64 sm:w-60 md:w-72 shadow-2xl", !isExpanded && "hover:shadow-3xl")}
               />
-              
-              {/* Render annotations only when expanded */}
-              <AnimatePresence>
-                {isExpanded && item.annotation && (
-                  <motion.div 
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.4 + (index * 0.1) }}
-                    className={cn(
-                      "absolute font-heading italic text-red-500/90 pointer-events-none z-10",
-                      item.annotation.className
-                    )}
-                  >
-                    {item.annotation.text}
-                  </motion.div>
-                )}
-              </AnimatePresence>
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </motion.div>
+            </div>
+            
+            {/* Render annotations only when expanded */}
+            <AnimatePresence>
+              {isExpanded && item.annotation && (
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: 0.4 + (index * 0.1) }}
+                  className={cn(
+                    "absolute font-heading italic text-red-500/90 pointer-events-none z-10",
+                    item.annotation.className
+                  )}
+                >
+                  {item.annotation.text}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+        ))}
+      </div>
 
       {/* Floating prompt to click */}
       <AnimatePresence>
@@ -296,7 +323,7 @@ export function InteractiveGallery({ items }: InteractiveGalleryProps) {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ delay: 0.8 }}
-            onClick={() => setIsExpanded(false)}
+            onClick={toggleLayout}
             className="mt-16 px-6 py-2 rounded-full border border-foreground/10 hover:bg-foreground/5 hover:border-foreground/20 text-foreground/70 transition-all font-light text-sm"
           >
             Stack photos
