@@ -5,6 +5,7 @@ import { Polaroid } from "@/components/ui/Polaroid";
 import { InteractiveGallery } from "@/components/ui/interactive-gallery";
 import RotatingText from "@/components/ui/RotatingText";
 import ScrollFloat from "@/components/ui/ScrollFloat";
+import RockBackgroundTransition from "@/components/ui/RockBackgroundTransition";
 import fs from "fs";
 import path from "path";
 
@@ -113,7 +114,8 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="flex flex-col pb-20">
+    <div id="about-page-wrapper" className="min-h-screen bg-background relative overflow-hidden transition-colors duration-75">
+      <RockBackgroundTransition />
       <section className="w-full max-w-4xl mx-auto px-4 py-32 md:px-8 space-y-10 relative min-h-[60vh]">
         {/* Subtle ambient background glow */}
         <div className="absolute top-20 left-10 -z-10 h-64 w-64 rounded-full bg-primary/5 blur-[100px] pointer-events-none" />
@@ -188,7 +190,7 @@ export default function AboutPage() {
       </section>
 
       {/* Beyond the Code Section */}
-      <section className="w-full max-w-5xl mx-auto px-4 py-24 md:px-8 space-y-16 relative">
+      <section id="beyond-code-section" className="w-full max-w-5xl mx-auto px-4 py-24 md:px-8 space-y-16 relative">
         <div className="flex flex-col items-center text-center space-y-4">
           <ScrollFloat
             animationDuration={1}
