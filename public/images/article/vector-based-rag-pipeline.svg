@@ -1,0 +1,55 @@
+<svg viewBox="0 0 900 300" xmlns="http://www.w3.org/2000/svg">
+  <rect width="900" height="300" fill="#0f1720"/>
+  <text x="450" y="35" text-anchor="middle" font-family="Georgia, serif" font-size="20" fill="#f5f3ee" font-weight="bold">How Vector-Based RAG Works</text>
+
+  <!-- Step boxes -->
+  <g font-family="Arial" font-size="13">
+    <!-- 1 Document -->
+    <rect x="30" y="90" width="120" height="80" rx="6" fill="#1f2c38" stroke="#4a5f74" stroke-width="2"/>
+    <text x="90" y="125" text-anchor="middle" fill="#f5f3ee" font-weight="bold">Document</text>
+    <text x="90" y="145" text-anchor="middle" fill="#9db3a5">(full text)</text>
+
+    <path d="M155 130 L195 130" stroke="#6b7f92" stroke-width="2" marker-end="url(#a)"/>
+
+    <!-- 2 chunking -->
+    <rect x="200" y="90" width="130" height="80" rx="6" fill="#1f2c38" stroke="#4a5f74" stroke-width="2"/>
+    <text x="265" y="118" text-anchor="middle" fill="#f5f3ee" font-weight="bold">Hard Chunking</text>
+    <text x="265" y="138" text-anchor="middle" fill="#9db3a5">512-1000 tok</text>
+    <text x="265" y="154" text-anchor="middle" fill="#e2725b">breaks sentences</text>
+
+    <path d="M335 130 L375 130" stroke="#6b7f92" stroke-width="2" marker-end="url(#a)"/>
+
+    <!-- 3 embed -->
+    <rect x="380" y="90" width="130" height="80" rx="6" fill="#1f2c38" stroke="#4a5f74" stroke-width="2"/>
+    <text x="445" y="118" text-anchor="middle" fill="#f5f3ee" font-weight="bold">Embed</text>
+    <text x="445" y="138" text-anchor="middle" fill="#9db3a5">chunk → vector</text>
+
+    <path d="M515 130 L555 130" stroke="#6b7f92" stroke-width="2" marker-end="url(#a)"/>
+
+    <!-- 4 vector db -->
+    <rect x="560" y="90" width="130" height="80" rx="6" fill="#1f2c38" stroke="#4a5f74" stroke-width="2"/>
+    <text x="625" y="118" text-anchor="middle" fill="#f5f3ee" font-weight="bold">Vector DB</text>
+    <text x="625" y="138" text-anchor="middle" fill="#9db3a5">Pinecone /</text>
+    <text x="625" y="154" text-anchor="middle" fill="#9db3a5">Chroma</text>
+
+    <path d="M695 130 L735 130" stroke="#6b7f92" stroke-width="2" marker-end="url(#a)"/>
+
+    <!-- 5 top-k -->
+    <rect x="740" y="90" width="130" height="80" rx="6" fill="#1a252f" stroke="#c1440e" stroke-width="2"/>
+    <text x="805" y="118" text-anchor="middle" fill="#f5f3ee" font-weight="bold">Top-K</text>
+    <text x="805" y="138" text-anchor="middle" fill="#9db3a5">similarity</text>
+    <text x="805" y="154" text-anchor="middle" fill="#9db3a5">match</text>
+  </g>
+
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#6b7f92"/>
+    </marker>
+  </defs>
+
+  <!-- query row -->
+  <text x="450" y="220" text-anchor="middle" font-family="Arial" font-size="13" fill="#c9d3dc">Query is embedded the same way → nearest vectors are pulled, regardless of whether they truly answer the question</text>
+
+  <rect x="330" y="240" width="240" height="40" rx="6" fill="#1a252f" stroke="#e2725b" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="450" y="265" text-anchor="middle" font-family="Arial" font-size="12" fill="#e2725b">"Similar" ≠ "Relevant"</text>
+</svg>

@@ -1,0 +1,49 @@
+<svg viewBox="0 0 700 620" xmlns="http://www.w3.org/2000/svg">
+  <rect width="700" height="620" fill="#0f1720"/>
+  <text x="350" y="35" text-anchor="middle" font-family="Georgia, serif" font-size="20" fill="#f5f3ee" font-weight="bold">PageIndex's Reasoning Loop</text>
+  <text x="350" y="58" text-anchor="middle" font-family="Arial" font-size="13" fill="#9db3a5">— like a human flipping to the table of contents first —</text>
+
+  <!-- Step 1 -->
+  <rect x="250" y="90" width="200" height="60" rx="8" fill="#1f2c38" stroke="#4a5f74" stroke-width="2"/>
+  <text x="350" y="115" text-anchor="middle" font-family="Arial" font-size="13" fill="#f5f3ee" font-weight="bold">1. Read the Table</text>
+  <text x="350" y="133" text-anchor="middle" font-family="Arial" font-size="13" fill="#f5f3ee" font-weight="bold">of Contents</text>
+
+  <path d="M350 150 L350 185" stroke="#6b7f92" stroke-width="2" marker-end="url(#b)"/>
+
+  <!-- Step 2 -->
+  <rect x="250" y="190" width="200" height="60" rx="8" fill="#1f2c38" stroke="#4a5f74" stroke-width="2"/>
+  <text x="350" y="215" text-anchor="middle" font-family="Arial" font-size="13" fill="#f5f3ee" font-weight="bold">2. Select the Most</text>
+  <text x="350" y="233" text-anchor="middle" font-family="Arial" font-size="13" fill="#f5f3ee" font-weight="bold">Likely Section</text>
+
+  <path d="M350 250 L350 285" stroke="#6b7f92" stroke-width="2" marker-end="url(#b)"/>
+
+  <!-- Step 3 -->
+  <rect x="250" y="290" width="200" height="60" rx="8" fill="#1f2c38" stroke="#4a5f74" stroke-width="2"/>
+  <text x="350" y="315" text-anchor="middle" font-family="Arial" font-size="13" fill="#f5f3ee" font-weight="bold">3. Extract Relevant</text>
+  <text x="350" y="333" text-anchor="middle" font-family="Arial" font-size="13" fill="#f5f3ee" font-weight="bold">Information</text>
+
+  <path d="M350 350 L350 385" stroke="#6b7f92" stroke-width="2" marker-end="url(#b)"/>
+
+  <!-- Step 4 diamond -->
+  <polygon points="350,390 460,440 350,490 240,440" fill="#1a252f" stroke="#c1440e" stroke-width="2"/>
+  <text x="350" y="435" text-anchor="middle" font-family="Arial" font-size="12" fill="#f5f3ee">Is the info</text>
+  <text x="350" y="450" text-anchor="middle" font-family="Arial" font-size="12" fill="#f5f3ee">sufficient?</text>
+
+  <!-- No -> loop back -->
+  <path d="M240 440 L120 440 L120 220 L250 220" stroke="#e2725b" stroke-width="2" fill="none" marker-end="url(#c)"/>
+  <text x="130" y="330" font-family="Arial" font-size="12" fill="#e2725b" transform="rotate(-90 130 330)">No → try another section</text>
+
+  <!-- Yes -> answer -->
+  <path d="M350 490 L350 525" stroke="#4a7c59" stroke-width="2" marker-end="url(#d)"/>
+  <text x="390" y="510" font-family="Arial" font-size="12" fill="#4a7c59">Yes</text>
+
+  <rect x="230" y="530" width="240" height="60" rx="8" fill="#1a252f" stroke="#4a7c59" stroke-width="2"/>
+  <text x="350" y="555" text-anchor="middle" font-family="Arial" font-size="13" fill="#f5f3ee" font-weight="bold">5. Answer the</text>
+  <text x="350" y="573" text-anchor="middle" font-family="Arial" font-size="13" fill="#f5f3ee" font-weight="bold">Question</text>
+
+  <defs>
+    <marker id="b" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#6b7f92"/></marker>
+    <marker id="c" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#e2725b"/></marker>
+    <marker id="d" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#4a7c59"/></marker>
+  </defs>
+</svg>

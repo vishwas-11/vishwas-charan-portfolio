@@ -1,0 +1,55 @@
+<svg viewBox="0 0 800 420" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="420" fill="#0f1720"/>
+  <text x="400" y="40" text-anchor="middle" font-family="Georgia, serif" font-size="22" fill="#f5f3ee" font-weight="bold">The Long-Document Problem</text>
+
+  <!-- Big document stack -->
+  <g>
+    <rect x="70" y="90" width="150" height="200" rx="4" fill="#1f2c38" stroke="#3a4a5a" stroke-width="2"/>
+    <rect x="80" y="80" width="150" height="200" rx="4" fill="#243342" stroke="#3a4a5a" stroke-width="2"/>
+    <rect x="90" y="70" width="150" height="200" rx="4" fill="#2c3d4f" stroke="#4a5f74" stroke-width="2"/>
+    <line x1="105" y1="95" x2="225" y2="95" stroke="#6b7f92" stroke-width="2"/>
+    <line x1="105" y1="115" x2="225" y2="115" stroke="#6b7f92" stroke-width="2"/>
+    <line x1="105" y1="135" x2="225" y2="135" stroke="#6b7f92" stroke-width="2"/>
+    <line x1="105" y1="155" x2="225" y2="155" stroke="#6b7f92" stroke-width="2"/>
+    <line x1="105" y1="175" x2="200" y2="175" stroke="#6b7f92" stroke-width="2"/>
+    <text x="165" y="255" text-anchor="middle" font-family="Arial" font-size="14" fill="#c9d3dc">200-page</text>
+    <text x="165" y="272" text-anchor="middle" font-family="Arial" font-size="14" fill="#c9d3dc">10-K filing</text>
+  </g>
+
+  <!-- Arrow -->
+  <path d="M 260 170 L 340 170" stroke="#c1440e" stroke-width="3" marker-end="url(#arrow1)"/>
+  <defs>
+    <marker id="arrow1" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#c1440e"/>
+    </marker>
+  </defs>
+
+  <!-- Small context window -->
+  <g>
+    <rect x="350" y="120" width="120" height="100" rx="6" fill="#1a252f" stroke="#c1440e" stroke-width="3" stroke-dasharray="6,4"/>
+    <text x="410" y="165" text-anchor="middle" font-family="Arial" font-size="13" fill="#f5f3ee">Context</text>
+    <text x="410" y="182" text-anchor="middle" font-family="Arial" font-size="13" fill="#f5f3ee">Window</text>
+  </g>
+
+  <!-- Overflow marks -->
+  <text x="410" y="250" text-anchor="middle" font-family="Arial" font-size="13" fill="#e2725b">"context rot" as it fills up →</text>
+
+  <!-- Result box -->
+  <path d="M 480 170 L 560 170" stroke="#4a7c59" stroke-width="3" marker-end="url(#arrow2)"/>
+  <defs>
+    <marker id="arrow2" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#4a7c59"/>
+    </marker>
+  </defs>
+
+  <g>
+    <rect x="570" y="110" width="180" height="120" rx="6" fill="#1a252f" stroke="#4a7c59" stroke-width="2"/>
+    <text x="660" y="140" text-anchor="middle" font-family="Arial" font-size="13" fill="#f5f3ee" font-weight="bold">Only relevant</text>
+    <text x="660" y="158" text-anchor="middle" font-family="Arial" font-size="13" fill="#f5f3ee" font-weight="bold">sections should</text>
+    <text x="660" y="176" text-anchor="middle" font-family="Arial" font-size="13" fill="#f5f3ee" font-weight="bold">enter the window</text>
+    <text x="660" y="200" text-anchor="middle" font-family="Arial" font-size="12" fill="#9db3a5">→ this is RAG's job</text>
+  </g>
+
+  <text x="400" y="340" text-anchor="middle" font-family="Arial" font-size="14" fill="#c9d3dc">Even with 200K+ token windows, dumping the whole document in</text>
+  <text x="400" y="360" text-anchor="middle" font-family="Arial" font-size="14" fill="#c9d3dc">degrades reasoning quality. The model needs the right pages, not all pages.</text>
+</svg>

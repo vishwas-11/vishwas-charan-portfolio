@@ -41,7 +41,7 @@ export default function Header() {
 
         <DockIcon>
           <div className="group relative h-full w-full">
-            <Link href="/articles" className="flex h-full w-full items-center justify-center rounded-full text-foreground transition-colors">
+            <Link href="/article" className="flex h-full w-full items-center justify-center rounded-full text-foreground transition-colors">
               <PenLine className="h-5 w-5" />
             </Link>
             <div className={tooltipClasses}>

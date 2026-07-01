@@ -1,0 +1,40 @@
+<svg viewBox="0 0 800 380" xmlns="http://www.w3.org/2000/svg">
+  <rect width="800" height="380" fill="#0f1720"/>
+  <text x="400" y="35" text-anchor="middle" font-family="Georgia, serif" font-size="20" fill="#f5f3ee" font-weight="bold">The ToC Tree — an "In-Context Index"</text>
+
+  <!-- root -->
+  <rect x="320" y="60" width="160" height="55" rx="6" fill="#1a252f" stroke="#c1440e" stroke-width="2"/>
+  <text x="400" y="83" text-anchor="middle" font-family="Arial" font-size="12" fill="#f5f3ee" font-weight="bold">Financial Stability</text>
+  <text x="400" y="100" text-anchor="middle" font-family="Arial" font-size="11" fill="#9db3a5">node_id: 0006</text>
+
+  <!-- children -->
+  <path d="M400 115 L230 165" stroke="#6b7f92" stroke-width="1.5"/>
+  <path d="M400 115 L400 165" stroke="#6b7f92" stroke-width="1.5"/>
+  <path d="M400 115 L580 165" stroke="#6b7f92" stroke-width="1.5"/>
+
+  <rect x="140" y="170" width="180" height="65" rx="6" fill="#1f2c38" stroke="#4a5f74" stroke-width="2"/>
+  <text x="230" y="192" text-anchor="middle" font-family="Arial" font-size="11" fill="#f5f3ee" font-weight="bold">Monitoring Financial</text>
+  <text x="230" y="207" text-anchor="middle" font-family="Arial" font-size="11" fill="#f5f3ee" font-weight="bold">Vulnerabilities</text>
+  <text x="230" y="223" text-anchor="middle" font-family="Arial" font-size="10" fill="#9db3a5">node_id: 0007 · pg 22-28</text>
+
+  <rect x="330" y="170" width="140" height="65" rx="6" fill="#1f2c38" stroke="#4a5f74" stroke-width="2"/>
+  <text x="400" y="200" text-anchor="middle" font-family="Arial" font-size="11" fill="#f5f3ee" font-weight="bold">Domestic &amp;</text>
+  <text x="400" y="216" text-anchor="middle" font-family="Arial" font-size="11" fill="#f5f3ee" font-weight="bold">International Coop.</text>
+  <text x="400" y="230" text-anchor="middle" font-family="Arial" font-size="10" fill="#9db3a5">node_id: 0008 · pg 28-31</text>
+
+  <rect x="490" y="170" width="200" height="65" rx="6" fill="#1f2c38" stroke="#4a5f74" stroke-width="2"/>
+  <text x="590" y="192" text-anchor="middle" font-family="Arial" font-size="11" fill="#f5f3ee" font-weight="bold">Appendix G:</text>
+  <text x="590" y="207" text-anchor="middle" font-family="Arial" font-size="11" fill="#f5f3ee" font-weight="bold">Statistical Tables</text>
+  <text x="590" y="223" text-anchor="middle" font-family="Arial" font-size="10" fill="#9db3a5">node_id: 0021 · pg 75-82</text>
+
+  <!-- cross reference arrow -->
+  <path d="M420 235 C 480 260, 540 260, 585 235" stroke="#e2725b" stroke-width="2" fill="none" stroke-dasharray="5,4" marker-end="url(#e)"/>
+  <text x="500" y="270" text-anchor="middle" font-family="Arial" font-size="11" fill="#e2725b">"see Appendix G" reference</text>
+
+  <defs>
+    <marker id="e" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0,0 L10,5 L0,10 Z" fill="#e2725b"/></marker>
+  </defs>
+
+  <text x="400" y="320" text-anchor="middle" font-family="Arial" font-size="12" fill="#c9d3dc">Each node carries a summary + node_id → raw content mapping.</text>
+  <text x="400" y="340" text-anchor="middle" font-family="Arial" font-size="12" fill="#c9d3dc">The whole tree sits inside the LLM's context, so it can reason about which branch to open next.</text>
+</svg>
