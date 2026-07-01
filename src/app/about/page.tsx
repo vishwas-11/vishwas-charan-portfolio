@@ -9,6 +9,8 @@ import { CinematicFooter } from "@/components/ui/CinematicFooter";
 import RotatingText from "@/components/ui/RotatingText";
 import ScrollFloat from "@/components/ui/ScrollFloat";
 import RockBackgroundTransition from "@/components/ui/RockBackgroundTransition";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 import fs from "fs";
 import path from "path";
 
@@ -188,6 +190,31 @@ export default function AboutPage() {
             <SplitText splitType="words" delay={30} threshold={0.1} className="font-medium text-foreground">
               For me, great software isn't just about writing code, it's about solving meaningful problems with thoughtful engineering.
             </SplitText>
+
+            <Reveal delay={0.6} overflow="visible">
+              <div className="group mt-12 flex flex-col md:flex-row md:items-center justify-between gap-6 border-y border-foreground/10 py-8 relative overflow-hidden transition-colors hover:border-foreground/20 duration-500">
+                <div className="absolute inset-0 bg-gradient-to-r from-foreground/5 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 ease-out pointer-events-none" />
+                <div className="space-y-1.5 relative z-10">
+                  <h3 className="text-xl md:text-2xl font-heading font-medium text-foreground tracking-tight flex items-center gap-3">
+                    <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+                    Thoughts & Ideas
+                  </h3>
+                  <p className="text-foreground/60 text-base font-light">
+                    Deep dives into engineering, AI architecture, and product building.
+                  </p>
+                </div>
+                <Button 
+                  asChild 
+                  variant="outline" 
+                  className="rounded-full shrink-0 z-10 border-foreground/20 hover:border-foreground hover:bg-foreground hover:text-background transition-all duration-500 ease-out h-12 px-6"
+                >
+                  <Link href="/article" className="flex items-center gap-2 group/btn">
+                    <span className="text-sm font-medium tracking-wide">Explore Articles</span>
+                    <ArrowUpRight className="h-4 w-4 transition-transform duration-300 group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1" />
+                  </Link>
+                </Button>
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
