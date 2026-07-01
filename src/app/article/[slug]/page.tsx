@@ -4,6 +4,8 @@ import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import type { Metadata } from 'next';
+import BlurText from '@/components/ui/BlurText';
+import { Reveal } from '@/components/ui/Reveal';
 
 export async function generateStaticParams() {
   const slugs = getArticleSlugs();
@@ -40,31 +42,45 @@ export default async function ArticlePage(
     <article className="min-h-screen pt-32 pb-32 px-4">
       {/* Scroll Progress Indicator - Can be added later with client component if needed */}
       <div className="max-w-3xl mx-auto mb-16">
-        <Link 
-          href="/article"
-          className="inline-flex items-center text-sm font-medium text-foreground/50 hover:text-foreground transition-colors mb-12 group"
-        >
-          <ArrowLeft className="mr-2 w-4 h-4 group-hover:-translate-x-1 transition-transform" />
-          Back to articles
-        </Link>
+        <Reveal delay={0.1} direction="up" overflow="visible">
+          <Link 
+            href="/article"
+            className="inline-flex items-center text-sm font-medium text-foreground/50 hover:text-foreground transition-colors mb-12 group"
+          >
+            <ArrowLeft className="mr-2 w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+            Back to articles
+          </Link>
+        </Reveal>
         
         <header className="mb-16">
           {article.date && (
-            <time className="text-sm font-mono text-accent mb-4 block uppercase tracking-wider">
-              {new Date(article.date).toLocaleDateString('en-US', {
-                month: 'long',
-                day: 'numeric',
-                year: 'numeric'
-              })}
-            </time>
+            <Reveal delay={0.2} direction="up" overflow="visible">
+              <time className="text-sm font-mono text-accent mb-4 block uppercase tracking-wider">
+                {new Date(article.date).toLocaleDateString('en-US', {
+                  month: 'long',
+                  day: 'numeric',
+                  year: 'numeric'
+                })}
+              </time>
+            </Reveal>
           )}
-          <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground leading-[1.1] mb-6">
-            {article.title}
-          </h1>
+          
+          <BlurText
+            text={article.title}
+            delay={50}
+            animateBy="words"
+            direction="top"
+            className="text-4xl md:text-6xl font-bold tracking-tight text-foreground leading-[1.1] mb-6"
+          />
+          
           {article.description && (
-            <p className="text-xl md:text-2xl text-foreground/60 leading-relaxed font-light">
-              {article.description}
-            </p>
+            <BlurText
+              text={article.description}
+              delay={30}
+              animateBy="words"
+              direction="bottom"
+              className="text-xl md:text-2xl text-foreground/60 leading-relaxed font-light"
+            />
           )}
         </header>
         
